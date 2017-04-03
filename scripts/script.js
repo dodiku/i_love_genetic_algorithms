@@ -8,6 +8,13 @@ var population = 1000;
 var numberOfRows = result.length;
 var randomMudation = 0.01;
 
+var debug = {
+  printScores: false,
+  population: population,
+  numberOfRows: numberOfRows,
+  randomMudation: randomMudation,
+};
+
 
 function setup() {
   // frameRate(1);
@@ -46,6 +53,8 @@ function setup() {
 
 function draw() {
 
+  applyDebug();
+
   if (done === false) {
 
     // generating 10 new versions per row
@@ -58,7 +67,9 @@ function draw() {
     }
     drawEmojis();
     isDone();
-    // console.log(allScores);
+    if (debug.printScores === true) {
+      console.log(allScores);
+    }
   }
 }
 
@@ -84,6 +95,13 @@ function fitnessScore(emojis, row) { // highest fitness score is 43
   return Math.floor(score/43*100);
 }
 
+
+
+function applyDebug(){
+  population = debug.population;
+  numberOfRows = debug.numberOfRows;
+  randomMudation = debug.randomMudation;
+}
 
 
 
